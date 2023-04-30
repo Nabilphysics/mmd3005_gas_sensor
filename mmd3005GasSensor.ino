@@ -9,6 +9,7 @@ Company: Bengal Champ, Bangladesh
 */
 
 /*
+ Datasheet: https://github.com/Nabilphysics/mmd3005_gas_sensor/blob/main/mmd3005GasSensor.ino
  Example Sensor Data in Hexadecimal
  AA00555C00008D0500007401000084020000000098E8010001000000000000000069D6000000BB64    = 1 - 80 , substring(78,80) = 64
  
