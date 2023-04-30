@@ -99,12 +99,12 @@ void extractData(String sensorData){
   //TVOC
   String tvocHexString = tvoc1+tvoc2;
   unsigned long int tvocIntValue = strtol(tvocHexString.c_str(), NULL, 16); // convert hex to int
-  Serial.print("TVOC: ");Serial.print(tvocIntValue/1000); Serial.println("");
+  Serial.print("TVOC: ");Serial.print(tvocIntValue/1000); Serial.println(" ppm");
 
   //H2S -  Hydrogen Sulfide
   String hydrogenSulfideHexString = hydrogenSulfide1 + hydrogenSulfide2;
   unsigned long int hydrogenSulfideIntValue = strtol(hydrogenSulfideHexString.c_str(), NULL, 16); // convert hex to int
-  Serial.print("H2S: ");Serial.print(hydrogenSulfideIntValue/1000); Serial.println("");
+  Serial.print("H2S: ");Serial.print(hydrogenSulfideIntValue/1000); Serial.println(" ppm");
 
 }
 
