@@ -5,3 +5,5 @@ Huiwen Technology. It can be used to simultaneously identify and detect the comp
 hydrogen sulfide in the air. The sensor module has both temperature and humidity detection function. The sensor of the MMD3005 
 series module is a multi-channel gas sensor composed of different material systems. It uses specific conditioning circuits and precise 
 algorithms to convert the response to conductivity changes into electrical signals corresponding to gas types and concentrations.
+
+![alt text](https://github.com/Nabilphysics/mmd3005_gas_sensor/blob/main/photo/readingData.jpg)
