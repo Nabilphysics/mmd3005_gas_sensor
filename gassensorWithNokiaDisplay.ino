@@ -37,7 +37,7 @@ Display Connection :
  ESP32  | Sensor MMD3005
  -------------------------
  GPIO2  | RST
- GPIP15 | CE
+ GPIO15 | CE
  GPIO4  | DC
  GPIO23 | Din
  GPIO18 | Clk
@@ -45,6 +45,12 @@ Display Connection :
  3.3V   | BL series with 220 ohm resistor
  GND    | GND 
 
+ Voltage Read  :
+ -------------------------
+ ESP32  | Sensor MMD3005
+ -------------------------
+ GPIO 34| Battery terminal with 2 10K Ohms Resistor Divider
+ 
  Good Resource: https://microcontrollerslab.com/nokia-5110-lcd-esp32-tutorial/
 */     
 #include <HardwareSerial.h>
@@ -69,10 +75,15 @@ Adafruit_PCD8544 nokiaDisplay = Adafruit_PCD8544(18,23,4,15,2); //Initialize nok
 String sensorData = "";
 int i = 0;
 
+int analogValue;
+
 void setup() {
   Serial.begin(115200); //Serial Port for PC Communication
   // set the data rate for the HardwareSerial port of ESP32
   SerialPort.begin(38400, SERIAL_8N1, 16, 17); //UART2 of ESP32
+  //set the resolution to 12 bits (0-4096)
+  analogReadResolution(10);
+
   nokiaDisplay.begin();
 
   nokiaDisplay.setContrast(50);
@@ -94,7 +105,8 @@ void setup() {
 }
 
 void loop() {
- 
+  analogValue = analogRead(34);
+
   if (SerialPort.available() > 0) {
     char inputData = SerialPort.read();
     char inputHexChar[3];
@@ -194,8 +206,10 @@ void extractAndShowData(String sensorData){
   nokiaDisplay.print(hydrogenSulfide);
   nokiaDisplay.println(" ppm");
 
-  nokiaDisplay.println(" Bengal Champ");
+  //nokiaDisplay.println(" Bengal Champ");
+  nokiaDisplay.print("[Bat:"); nokiaDisplay.print(analogValue * 0.00677); nokiaDisplay.println("V]"); // Analog Value to Volt Conversion Factor = 0.00677
 
   nokiaDisplay.display();
 
 }
+
